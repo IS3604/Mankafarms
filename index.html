@@ -87,8 +87,8 @@
 
     /* PAGED MOBILE VIEW — each .page is its own screen on phones, normal stacked flow on tablet+ */
     .page { display:none; }
-    .page.active-page { display:block; animation:pageIn 0.35s cubic-bezier(0.16,1,0.3,1); }
-    @keyframes pageIn { from{opacity:0;transform:translateY(10px);} to{opacity:1;transform:translateY(0);} }
+    .page.active-page { display:block; animation:pageIn 0.48s cubic-bezier(0.16,1,0.3,1); }
+    @keyframes pageIn { from{opacity:0;transform:translateY(22px) scale(0.98);} to{opacity:1;transform:translateY(0) scale(1);} }
 
     /* HERO */
     .hero { min-height:100svh; display:flex; align-items:center; padding:32px 20px; position:relative; overflow:hidden; background:var(--clr-dark); }
@@ -125,7 +125,21 @@
 
     /* SECTION COMMONS */
     section { padding:56px 20px; }
-    .section-label { font-size:12px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--clr-accent); margin-bottom:10px; }
+    .section-label { display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; color:var(--clr-accent); margin-bottom:10px; }
+    .sd-ico { width:14px; height:14px; flex-shrink:0; opacity:0.75; }
+    .hero-deco { position:absolute; z-index:1; opacity:0.45; pointer-events:none; color:#9cbf6a; width:15vw; height:15vw; max-width:90px; max-height:90px; filter:drop-shadow(0 2px 6px rgba(0,0,0,0.35)); }
+    .deco-wm { position:absolute; z-index:0; pointer-events:none; width:180px; height:180px; }
+    .deco-wm.sm { width:120px; height:120px; }
+    .deco-wm.dark { color:rgba(156,191,106,0.16); }
+    .deco-wm.light { color:rgba(92,122,63,0.09); }
+    .hd-leaf { top:6%; right:5%; }
+    .hd-tree { left:5%; bottom:26%; width:11vw; height:11vw; max-width:64px; max-height:64px; }
+    .hd-bird { top:16%; left:8%; width:9vw; height:9vw; max-width:52px; max-height:52px; }
+    .hd-nest { bottom:8%; right:7%; width:10vw; height:10vw; max-width:58px; max-height:58px; display:none; }
+    @media (min-width:768px) {
+      .hd-nest { display:block; }
+      .hd-bird { top:10%; left:6%; }
+    }
     .section-title { font-family:var(--font-heading); font-size:clamp(1.9rem,8vw,3.5rem); font-weight:800; letter-spacing:-1px; line-height:1.08; color:var(--clr-dark); margin-bottom:32px; }
     .section-title .muted { color:var(--clr-light-grey); }
 
@@ -138,7 +152,7 @@
     @keyframes marquee { 0%{transform:translateX(0);} 100%{transform:translateX(-50%);} }
 
     /* ABOUT — dark card */
-    #about { background:var(--clr-dark); color:var(--clr-white); border-radius:24px; margin:16px 12px; padding:48px 22px; }
+    #about { position:relative; overflow:hidden; background:var(--clr-dark); color:var(--clr-white); border-radius:24px; margin:16px 12px; padding:48px 22px; }
     .about-grid { display:grid; grid-template-columns:1fr; gap:36px; align-items:start; }
     .about-heading { font-family:var(--font-heading); font-size:clamp(1.8rem,7vw,3rem); font-weight:800; letter-spacing:-1px; line-height:1.1; color:var(--clr-white); margin-bottom:20px; }
     .about-heading .ac { color:#9cbf6a; }
@@ -157,7 +171,7 @@
     .pill.green { background:rgba(92,122,63,0.2); border-color:rgba(92,122,63,0.4); color:#9cbf6a; }
 
     /* FARMHOUSES — white card */
-    #farmhouses { background:var(--clr-white); border-radius:20px; margin:14px 12px; padding:36px 16px; }
+    #farmhouses { position:relative; overflow:hidden; background:var(--clr-white); border-radius:20px; margin:14px 12px; padding:36px 16px; }
     .fh-grid { display:grid; grid-template-columns:1fr; gap:12px; }
     .fh-card { background:var(--clr-bg); border:1px solid var(--clr-border); border-radius:16px; overflow:hidden; display:flex; flex-direction:column; box-shadow:none; transition:transform var(--transition),box-shadow var(--transition),border-color var(--transition); }
     .fh-card:active,.fh-card:hover { transform:translateY(-2px); box-shadow:0 12px 30px rgba(0,0,0,0.08); border-color:var(--clr-accent); }
@@ -257,7 +271,7 @@
     .form-submit { width:100%; padding:16px; background:var(--clr-accent); color:var(--clr-white); font-family:var(--font-heading); font-size:15px; font-weight:700; letter-spacing:-0.3px; border:none; border-radius:var(--radius-pill); cursor:pointer; transition:background var(--transition),transform var(--transition); margin-top:6px; }
 
     /* FOOTER */
-    footer { background:var(--clr-dark); color:rgba(255,255,255,0.55); padding:44px 24px calc(36px + env(safe-area-inset-bottom)); font-size:12px; }
+    footer { position:relative; overflow:hidden; background:var(--clr-dark); color:rgba(255,255,255,0.55); padding:44px 24px calc(36px + env(safe-area-inset-bottom)); font-size:12px; }
     footer a { color:rgba(255,255,255,0.75); transition:color var(--transition); }
     footer a:hover { color:#9cbf6a; }
     .footer-inner { max-width:960px; margin:0 auto; display:flex; flex-direction:column; align-items:center; gap:26px; text-align:center; }
@@ -283,9 +297,11 @@
 
     /* ROOM DETAIL — full-screen carousel + info, opened from a room card */
     .fh-card[data-room] { cursor:pointer; }
-    .room-detail { position:fixed; inset:0; z-index:10050; background:var(--clr-bg); transform:translateY(100%); transition:transform 0.42s cubic-bezier(0.16,1,0.3,1); overflow-y:auto; -webkit-overflow-scrolling:touch; }
-    .room-detail.open { transform:translateY(0); }
-    .rd-close { position:absolute; top:calc(16px + env(safe-area-inset-top)); right:16px; z-index:5; width:40px; height:40px; border-radius:50%; background:rgba(16,19,15,0.5); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; color:#fff; }
+    .room-detail { position:fixed; left:0; right:0; bottom:0; top:100%; z-index:10050; background:var(--clr-bg); transition:top 0.42s cubic-bezier(0.16,1,0.3,1); overflow-y:auto; -webkit-overflow-scrolling:touch; overscroll-behavior:contain; visibility:hidden; }
+    .room-detail.open { top:0; visibility:visible; }
+    body.rd-lock { position:fixed; left:0; right:0; width:100%; overscroll-behavior:none; }
+    .rd-close { position:fixed; top:calc(16px + env(safe-area-inset-top)); right:16px; z-index:10060; width:40px; height:40px; border-radius:50%; background:rgba(16,19,15,0.55); backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px); border:1px solid rgba(255,255,255,0.25); display:flex; align-items:center; justify-content:center; color:#fff; box-shadow:0 6px 20px rgba(0,0,0,0.25); transition:background var(--transition); }
+    .rd-close:hover { background:rgba(16,19,15,0.75); }
     .rd-close .ico { width:18px; height:18px; }
     .rd-hero { position:relative; width:100%; height:44vh; min-height:260px; overflow:hidden; background:var(--clr-dark); }
     .rd-hero img { width:100%; height:100%; object-fit:cover; display:block; }
@@ -307,6 +323,24 @@
     .rd-gcap { padding:12px 14px 14px; font-size:13px; line-height:1.55; color:var(--clr-mid); }
     .rd-gnum { display:inline-block; font-family:var(--font-heading); font-size:11px; font-weight:800; color:var(--clr-accent); letter-spacing:0.06em; margin-right:6px; }
     .rd-gdivider { border:none; border-top:1px solid var(--clr-border); margin:2px 20px 0; }
+
+    /* BOOK NOW — floating action button */
+    .book-fab { position:fixed; right:16px; bottom:calc(16px + env(safe-area-inset-bottom)); z-index:9500; display:flex; flex-direction:column; align-items:flex-end; gap:10px; }
+    .fab-main { display:flex; align-items:center; justify-content:center; gap:8px; white-space:nowrap; line-height:1; background:var(--clr-accent); color:#fff; border:none; padding:15px 22px; border-radius:100px; font-family:var(--font-heading); font-size:14px; font-weight:700; letter-spacing:-0.2px; box-shadow:0 12px 30px rgba(92,122,63,0.4); cursor:pointer; transition:transform var(--transition),background var(--transition); }
+    .fab-main:hover { background:#476530; transform:scale(1.04); }
+    .fab-main .ico { width:18px; height:18px; }
+    .fab-main .ico.x { display:none; }
+    .book-fab.open .fab-main .ico.cal { display:none; }
+    .book-fab.open .fab-main .ico.x { display:block; }
+    .fab-menu { display:flex; flex-direction:column; gap:8px; align-items:stretch; width:230px; background:var(--clr-white); border:1px solid var(--clr-border); border-radius:16px; padding:10px; box-shadow:0 20px 50px rgba(0,0,0,0.18); transform:translateY(10px) scale(0.96); opacity:0; pointer-events:none; transition:transform var(--transition),opacity var(--transition); }
+    .book-fab.open .fab-menu { transform:translateY(0) scale(1); opacity:1; pointer-events:auto; }
+    .fab-item { display:flex; align-items:center; gap:10px; padding:11px 12px; border-radius:10px; font-size:13.5px; font-weight:600; color:var(--clr-dark); transition:background var(--transition); }
+    .fab-item:hover { background:var(--clr-bg); }
+    .fab-item .ico { width:17px; height:17px; color:var(--clr-accent); flex-shrink:0; }
+    .fab-item.gold .ico { color:var(--clr-gold); }
+    .fab-row { display:flex; gap:8px; }
+    .fab-row .fab-item { flex:1; justify-content:center; }
+    .fab-label { font-size:10px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--clr-light-grey); padding:6px 12px 2px; }
 
     /* ICONS */
     .ico { width:1em; height:1em; display:inline-block; vertical-align:-0.15em; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; flex-shrink:0; }
@@ -418,6 +452,10 @@
 
       .exp-card { grid-template-columns:1fr auto; gap:24px; padding:32px 36px; }
       .exp-period,.exp-loc { text-align:right; white-space:nowrap; }
+
+      .book-fab { bottom:110px; right:5%; align-items:flex-end; }
+      .fab-main { padding:16px 26px; font-size:15px; }
+      .fab-menu { width:250px; }
     }
 
     /* ============ DESKTOP ============ */
@@ -497,6 +535,10 @@
   <video class="hero-video" autoplay muted loop playsinline preload="auto">
     <source src="Video-807.mp4" type="video/mp4">
   </video>
+  <svg class="hero-deco hd-leaf" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 21c4-2 7-5 7-9a7 7 0 0 0-14 0c0 4 3 7 7 9Z"/><path d="M9 12a3 3 0 0 0 6 0"/></svg>
+  <svg class="hero-deco hd-tree" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 22V10"/><path d="M12 10c-3 0-6-2-6-6 4 0 6 2 6 6Z"/><path d="M12 14c3 0 6-2 6-6-4 0-6 2-6 6Z"/></svg>
+  <svg class="hero-deco hd-bird" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 13c3-6 8-9 12-9-1 4-2 6-5 8"/><path d="M16 8c2 1 3 3 3 6"/><circle cx="8" cy="14" r="1" fill="currentColor" stroke="none"/></svg>
+  <svg class="hero-deco hd-nest" viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.5"><ellipse cx="12" cy="17" rx="8" ry="3"/><path d="M6 17c0-3 2-4 2-4M18 17c0-3-2-4-2-4"/><circle cx="12" cy="10" r="3"/></svg>
   <div class="hero-overlay"></div>
   <div class="hero-content">
     <div class="hero-glass">
@@ -512,7 +554,7 @@
           <span id="role-typewriter"></span><span class="tw-cursor"></span>
         </span>
         <span class="meta-sep"></span>
-        <span>4 BHK · Sleeps 12 · Jungle Escape</span>
+        <span>4 BHK · Sleeps 20 · Jungle Escape</span>
         <span class="meta-sep"></span>
         <span style="display:inline-flex;align-items:center;gap:6px;"><svg class="ico" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg> Amajhiri, Kurai 480881, Near Pench Tiger Reserve</span>
       </div>
@@ -530,7 +572,7 @@
   <div class="marquee-track">
     <span class="item">Jungle Farmstay</span><span class="item hi">·</span>
     <span class="item">Near Pench Tiger Reserve</span><span class="item hi">·</span>
-    <span class="item">Sleeps 12 Guests</span><span class="item hi">·</span>
+    <span class="item">Sleeps 20 Guests</span><span class="item hi">·</span>
     <span class="item gd">4 Spacious Rooms</span><span class="item hi">·</span>
     <span class="item">Private Kitchen</span><span class="item hi">·</span>
     <span class="item">Jungle Views</span><span class="item hi">·</span>
@@ -541,7 +583,7 @@
     <span class="item">Book on Airbnb</span><span class="item hi">·</span>
     <span class="item">Jungle Farmstay</span><span class="item hi">·</span>
     <span class="item">Near Pench Tiger Reserve</span><span class="item hi">·</span>
-    <span class="item">Sleeps 12 Guests</span><span class="item hi">·</span>
+    <span class="item">Sleeps 20 Guests</span><span class="item hi">·</span>
     <span class="item gd">4 Spacious Rooms</span><span class="item hi">·</span>
     <span class="item">Private Kitchen</span><span class="item hi">·</span>
     <span class="item">Jungle Views</span><span class="item hi">·</span>
@@ -556,6 +598,8 @@
 
 <!-- ABOUT -->
 <section id="about">
+  <svg class="deco-wm dark" viewBox="0 0 24 24" style="right:-30px;top:-20px;" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1"><path d="M12 22V10"/><path d="M12 10c-3 0-6-2-6-6 4 0 6 2 6 6Z"/><path d="M12 14c3 0 6-2 6-6-4 0-6 2-6 6Z"/></svg>
+  <svg class="deco-wm dark sm" viewBox="0 0 24 24" style="left:-24px;bottom:-24px;" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1"><ellipse cx="12" cy="17" rx="8" ry="3"/><path d="M6 17c0-3 2-4 2-4M18 17c0-3-2-4-2-4"/><circle cx="12" cy="10" r="3"/></svg>
   <div class="about-grid">
     <div>
       <p class="section-label" style="color:rgba(156,191,106,0.9)">About Manka Farms</p>
@@ -572,8 +616,8 @@
           <div class="stat-label">Luxury Bedrooms</div>
         </div>
         <div class="stat-card reveal">
-          <div class="stat-value">Free<span class="ac"> Parking</span></div>
-          <div class="stat-label">On-Site Parking</div>
+          <div class="stat-value">11<span class="ac">kW</span></div>
+          <div class="stat-label">On-Site EV Charging Facility</div>
         </div>
         <div class="stat-card reveal">
           <div class="stat-value">1<span class="gd"> km</span></div>
@@ -589,11 +633,13 @@
       <p class="section-label" style="color:rgba(156,191,106,0.9);margin-bottom:24px;">Project Highlights</p>
       <ul class="info-list">
         <li><span class="info-icon"><svg class="ico" viewBox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 20 8 20 12c0 4-4 8-9 8Z"/><path d="M11 20v-6a6 6 0 0 1 6-6"/></svg></span><span>Nestled in lush jungle near Pench Tiger Reserve</span></li>
-        <li><span class="info-icon"><svg class="ico" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span><span>4 spacious rooms, sleeps up to 12 guests</span></li>
+        <li><span class="info-icon"><svg class="ico" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg></span><span>4 spacious rooms, 5 bathrooms, sleeps up to 20 guests</span></li>
         <li><span class="info-icon"><svg class="ico" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span><span>Pench Tiger Reserve, Amajhiri, Kurai 480881 (M.P.)</span></li>
         <li><span class="info-icon"><svg class="ico" viewBox="0 0 24 24"><path d="M4 20c4-8 8-12 16-16-1 6-3 9-6 11"/><path d="M14 15c-3 2-6 3-10 5"/></svg></span><span>Wildlife safaris to Pench Tiger Reserve</span></li>
         <li><span class="info-icon"><svg class="ico" viewBox="0 0 24 24"><path d="M6 3v7a3 3 0 0 0 6 0V3"/><path d="M9 10v11"/><path d="M17 3c-1.5 1.5-2 3-2 5s1 3 2 3 2-1 2-3-.5-3.5-2-5Z"/><path d="M17 11v10"/></svg></span><span>Fully equipped private kitchen &amp; dining</span></li>
         <li><span class="info-icon"><svg class="ico" viewBox="0 0 24 24"><path d="M12 2c1 4-3 5-3 9a3 3 0 0 0 6 0c1 1 1.5 2.5 1.5 4a4.5 4.5 0 0 1-9 0C7.5 10 9 8 12 2Z"/></svg></span><span>Bonfire evenings &amp; tribal food experiences</span></li>
+        <li><span class="info-icon"><svg class="ico" viewBox="0 0 24 24"><path d="M12 21c4-2 7-5 7-9a7 7 0 0 0-14 0c0 4 3 7 7 9Z"/><path d="M9 12a3 3 0 0 0 6 0"/></svg></span><span>Pot making experience, in-house &amp; pottery village 2 km away</span></li>
+        <li><span class="info-icon"><svg class="ico" viewBox="0 0 24 24"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></span><span>On-site EV charging facility (11kW)</span></li>
       </ul>
       <div style="margin-top:40px;">
         <p class="section-label" style="color:rgba(156,191,106,0.9);margin-bottom:16px;">Book via</p>
@@ -613,7 +659,8 @@
 <div class="page" id="page-stay">
 <!-- FARMHOUSES -->
 <section id="farmhouses">
-  <p class="section-label">Our Rooms</p>
+  <svg class="deco-wm light" viewBox="0 0 24 24" style="right:-28px;bottom:-28px;" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1"><path d="M4 20c9-1 14-6 15-15C10 6 5 11 4 20Z"/><path d="M6 18c3-4 6-7 12-11"/></svg>
+  <p class="section-label"><svg class="ico sd-ico" viewBox="0 0 24 24"><path d="M12 21c4-2 7-5 7-9a7 7 0 0 0-14 0c0 4 3 7 7 9Z"/><path d="M9 12a3 3 0 0 0 6 0"/></svg>Our Rooms</p>
   <h2 class="section-title reveal">Your Stay at<br><span class="muted">Manka Farms</span></h2>
   <div class="fh-grid">
     <div class="fh-card reveal" data-room="farmhouse-stay">
@@ -621,7 +668,7 @@
       <div class="fh-body">
         <div class="fh-tag">Private Farmhouse</div>
         <div class="fh-name">Entire Farmhouse Stay</div>
-        <div class="fh-size">4 Bedrooms · 1 Bathroom · Sleeps 12</div>
+        <div class="fh-size">4 Bedrooms · 5 Bathrooms · Sleeps 12</div>
         <div class="fh-price">Available on Airbnb</div>
         <div class="fh-tags"><span class="fh-ptag">Private Kitchen</span><span class="fh-ptag">Jungle Views</span><span class="fh-ptag">Free Parking</span><span class="fh-ptag">Wi-Fi</span></div>
       </div>
@@ -641,7 +688,7 @@
       <div class="fh-body">
         <div class="fh-tag">Group &amp; Family Stays</div>
         <div class="fh-name">Whole Property Booking</div>
-        <div class="fh-size">Exclusive use · Up to 12 persons</div>
+        <div class="fh-size">Exclusive use · Up to 20 persons</div>
         <div class="fh-price">Corporate &amp; Leisure Groups</div>
         <div class="fh-tags"><span class="fh-ptag">Full Privacy</span><span class="fh-ptag">Workspace</span><span class="fh-ptag">First Aid</span><span class="fh-ptag">Caretaker</span></div>
       </div>
@@ -652,7 +699,7 @@
 
 <!-- INCLUSIONS -->
 <section id="inclusions">
-  <p class="section-label">What's Included</p>
+  <p class="section-label"><svg class="ico sd-ico" viewBox="0 0 24 24"><path d="M12 22V10"/><path d="M12 10c-3 0-6-2-6-6 4 0 6 2 6 6Z"/><path d="M12 14c3 0 6-2 6-6-4 0-6 2-6 6Z"/></svg>What's Included</p>
   <h2 class="section-title reveal">Every Unit,<br><span class="muted">Fully Endowed</span></h2>
   <div class="inc-grid">
     <div class="inc-card reveal"><div class="inc-icon"><svg class="ico" viewBox="0 0 24 24" style="width:1.5em;height:1.5em;"><path d="M6 3v7a3 3 0 0 0 6 0V3"/><path d="M9 10v11"/><path d="M17 3c-1.5 1.5-2 3-2 5s1 3 2 3 2-1 2-3-.5-3.5-2-5Z"/><path d="M17 11v10"/></svg></div><div class="inc-body"><div class="inc-title">Fully Equipped Kitchen</div><div class="inc-desc">Private kitchen with all essentials — cook your own meals or enjoy traditional desi tribal food prepared by our caretaker.</div></div></div>
@@ -665,6 +712,8 @@
     <div class="inc-card reveal"><div class="inc-icon"><svg class="ico" viewBox="0 0 24 24" style="width:1.5em;height:1.5em;"><path d="M2 18h20M4 18v-4a2 2 0 0 1 2-2h5a2 2 0 0 1 2 2v4M4 14V8h9a4 4 0 0 1 4 4v2M6 8V6"/></svg></div><div class="inc-body"><div class="inc-title">4 Comfortable Bedrooms</div><div class="inc-desc">Four spacious, luxuriously appointed bedrooms — each designed to immerse you in comfort and tranquility.</div></div></div>
     <div class="inc-card reveal"><div class="inc-icon"><svg class="ico" viewBox="0 0 24 24" style="width:1.5em;height:1.5em;"><path d="M16 8c2 0 4 1.5 4 3.5S18.5 15 16 15c-1 2-3 3-6 3-2 0-3-1-3-1s1.5 0 2-1c-3-1-5-3-5-6 0-1 .5-2 1-2 .5-2 3-4 6-4 2 0 3.5 1 4 2Z"/><circle cx="17" cy="10.5" r="0.6" fill="currentColor" stroke="none"/></svg></div><div class="inc-body"><div class="inc-title">Bird Watching</div><div class="inc-desc">The jungle around Manka Farms is teeming with exotic birdlife — a paradise for bird watching enthusiasts.</div></div></div>
     <div class="inc-card reveal"><div class="inc-icon"><svg class="ico" viewBox="0 0 24 24" style="width:1.5em;height:1.5em;"><path d="M3 11l4-6h10l4 6"/><path d="M5 11v9h14v-9"/><path d="M10 20v-5h4v5"/></svg></div><div class="inc-body"><div class="inc-title">Tribal Village Tour</div><div class="inc-desc">Explore nearby tribal villages, experience authentic local culture, and taste traditional tribal cuisine.</div></div></div>
+    <div class="inc-card reveal"><div class="inc-icon"><svg class="ico" viewBox="0 0 24 24" style="width:1.5em;height:1.5em;"><path d="M12 21c4-2 7-5 7-9a7 7 0 0 0-14 0c0 4 3 7 7 9Z"/><path d="M9 12a3 3 0 0 0 6 0"/></svg></div><div class="inc-body"><div class="inc-title">Pot Making Experience</div><div class="inc-desc">Try your hand at traditional pottery, in-house — a hands-on craft experience for guests of all ages, with a pottery village just 2 km away.</div></div></div>
+    <div class="inc-card reveal"><div class="inc-icon"><svg class="ico" viewBox="0 0 24 24" style="width:1.5em;height:1.5em;"><path d="M13 2 4 14h6l-1 8 9-12h-6l1-8Z"/></svg></div><div class="inc-body"><div class="inc-title">EV Charging (11kW)</div><div class="inc-desc">An 11kW on-site EV charging point, so you can arrive and leave fully charged for the journey home.</div></div></div>
     <div class="inc-card reveal"><div class="inc-icon"><svg class="ico" viewBox="0 0 24 24" style="width:1.5em;height:1.5em;"><path d="M2 20c3-5 6-4 8-8s2-7 2-7 2 3 2 7 5 3 8 8"/><path d="M2 20h20"/></svg></div><div class="inc-body"><div class="inc-title">Pench River Picnic</div><div class="inc-desc">Beautiful Pench river picnic spots close by — perfect for a refreshing day out in nature with the family.</div></div></div>
     <div class="inc-card reveal"><div class="inc-icon"><svg class="ico" viewBox="0 0 24 24" style="width:1.5em;height:1.5em;"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2"/></svg></div><div class="inc-body"><div class="inc-title">On-Site Caretaker</div><div class="inc-desc">A dedicated caretaker available to assist with your needs, meals, local guidance, and safari bookings.</div></div></div>
   </div>
@@ -682,7 +731,7 @@
     <div class="glance-card reveal"><div class="glance-lbl">Property Type</div><div class="glance-val">Jungle <span class="g">Farmstay</span></div></div>
     <div class="glance-card reveal"><div class="glance-lbl">Bedrooms</div><div class="glance-val"><span class="g">4</span> Rooms</div></div>
     <div class="glance-card reveal"><div class="glance-lbl">Max Guests</div><div class="glance-val"><span class="g">20</span> Persons</div></div>
-    <div class="glance-card reveal"><div class="glance-lbl">Bathrooms</div><div class="glance-val"><span class="gd">1</span> Bathroom</div></div>
+    <div class="glance-card reveal"><div class="glance-lbl">Bathrooms</div><div class="glance-val"><span class="gd">5</span> Bathrooms</div></div>
     <div class="glance-card reveal"><div class="glance-lbl">Location</div><div class="glance-val"><span class="g">Amajhiri</span>, Kurai</div></div>
     <div class="glance-card reveal"><div class="glance-lbl">Nearest Reserve</div><div class="glance-val">Pench <span class="g">Tiger</span> Reserve</div></div>
     <div class="glance-card reveal"><div class="glance-lbl">Highway</div><div class="glance-val">Nagpur–<span class="gd">Jabalpur</span></div></div>
@@ -694,7 +743,7 @@
 
 <!-- AMENITIES -->
 <section id="amenities">
-  <p class="section-label">Experiences &amp; Amenities</p>
+  <p class="section-label"><svg class="ico sd-ico" viewBox="0 0 24 24"><path d="M3 13c3-6 8-9 12-9-1 4-2 6-5 8"/><path d="M16 8c2 1 3 3 3 6"/><circle cx="8" cy="14" r="1" fill="currentColor" stroke="none"/></svg>Experiences &amp; Amenities</p>
   <h2 class="section-title reveal">At Manka Farms<br><span class="muted">Your Jungle Sanctuary</span></h2>
   <div class="amenities-layout">
     <div class="am-img-wrap reveal">
@@ -714,6 +763,8 @@
         <li>Fully Equipped Private Kitchen</li>
         <li>Pench River Picnic Spots</li>
         <li>Tribal Village Cultural Tours</li>
+        <li>Pot Making Experience (In-House)</li>
+        <li>EV Charging Facility (11kW)</li>
         <li>Free On-Site Private Parking</li>
         <li>Desk / Remote Work Space</li>
         <li>First Aid Kit &amp; Safety Essentials</li>
@@ -747,7 +798,7 @@
 <div class="page" id="page-location">
 <!-- LOCATION -->
 <section id="location">
-  <p class="section-label">Location</p>
+  <p class="section-label"><svg class="ico sd-ico" viewBox="0 0 24 24"><ellipse cx="12" cy="17" rx="8" ry="3"/><path d="M6 17c0-3 2-4 2-4M18 17c0-3-2-4-2-4"/><circle cx="12" cy="10" r="3"/></svg>Location</p>
   <h2 class="section-title reveal">In the Heart of<br><span class="muted">Pench, Central India</span></h2>
   <div class="loc-layout">
     <div class="reveal">
@@ -755,6 +806,7 @@
       <p style="font-size:11px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:var(--clr-accent);margin-bottom:14px;">Nearby Landmarks</p>
       <ul class="prox-list">
         <li><span>Pench Tiger Reserve (Turia Gate)</span><span class="prox-dist">~7 km</span></li>
+        <li><span>Pottery Village</span><span class="prox-dist">~2 km</span></li>
         <li><span>Khawasa</span><span class="prox-dist">~3 km</span></li>
         <li><span>Nagpur City</span><span class="prox-dist">~90 km</span></li>
         <li><span>Seoni Town</span><span class="prox-dist">~45 km</span></li>
@@ -840,6 +892,7 @@
 
 <!-- FOOTER -->
 <footer>
+  <svg class="deco-wm dark sm" viewBox="0 0 24 24" style="right:-20px;top:-14px;" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1"><path d="M3 13c3-6 8-9 12-9-1 4-2 6-5 8"/><path d="M16 8c2 1 3 3 3 6"/><circle cx="8" cy="14" r="1" fill="currentColor" stroke="none"/></svg>
   <div class="footer-inner">
     <div class="footer-brand">
       <div class="footer-logo"><img src="manka-logo-small.png" alt="Manka Farms logo" loading="lazy"></div>
@@ -879,6 +932,24 @@
 
   <div class="footer-bottom">© 2026 Manka Farms · Jungle Farmstay, Pench</div>
 </footer>
+
+<!-- BOOK NOW FLOATING BUTTON -->
+<div class="book-fab" id="bookFab">
+  <div class="fab-menu" id="fabMenu">
+    <p class="fab-label">Book Directly</p>
+    <div class="fab-row">
+      <a href="tel:+919993788800" class="fab-item"><svg class="ico" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.22a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92Z"/></svg>Call</a>
+      <a href="https://wa.me/919993788800" target="_blank" rel="noopener" class="fab-item"><svg class="ico ico-fill" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.005c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Zm5.8 14.14c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.08.99-2.37.26-.28.57-.36.76-.36l.55.01c.18 0 .41-.07.64.49.24.58.81 2 .88 2.14.07.15.12.32.02.51-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.29.28-.12.55.16.28.73 1.2 1.57 1.94 1.08.96 1.99 1.26 2.27 1.4.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.55.73 1.81.87.27.13.44.2.51.3.07.11.07.65-.17 1.32Z"/></svg>WhatsApp</a>
+    </div>
+    <a href="https://www.airbnb.co.in/rooms/1143813205078140998?check_in=2026-09-01&check_out=2026-09-02&guests=1&adults=1&s=67&unique_share_id=efa01328-fd86-496e-8c9c-e101ecde5888" target="_blank" rel="noopener" class="fab-item gold"><svg class="ico" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>Book on Airbnb</a>
+    <a href="#contact" class="fab-item" id="fabEnquire"><svg class="ico" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 8h16"/><path d="M8 4v4"/></svg>Direct Enquiry</a>
+  </div>
+  <button class="fab-main" id="fabToggle" aria-label="Book Now" aria-expanded="false">
+    <svg class="ico cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+    <svg class="ico x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+    Book Now
+  </button>
+</div>
 
 <!-- ROOM DETAIL OVERLAY -->
 <div class="room-detail" id="roomDetail" aria-hidden="true">
@@ -1017,7 +1088,7 @@
 
   // TYPEWRITER
   (function(){
-    const roles=['Jungle Farmstay · Pench, M.P.','4 Bedrooms · Sleeps 12 Guests','7 km from Turia Gate','Bonfires & Jungle Safaris'];
+    const roles=['Jungle Farmstay · Pench, M.P.','4 Bedrooms · Sleeps 20 Guests','7 km from Turia Gate','Bonfires & Jungle Safaris'];
     let ri=0,ci=0,del=false;
     const el=document.getElementById('role-typewriter');
     function type(){
@@ -1040,7 +1111,7 @@
         preview: 'farmhouse-stay/farmhouse-1.jpg',
         tag: 'Private Farmhouse',
         title: 'Entire Farmhouse Stay',
-        size: '4 Bedrooms · 1 Bathroom · Sleeps 12',
+        size: '4 Bedrooms · 5 Bathrooms · Sleeps 12',
         price: 'Available on Airbnb',
         tags: ['Private Kitchen','Jungle Views','Free Parking','Wi-Fi','Canopy Bed','Attached Bath'],
         desc: [
@@ -1086,7 +1157,7 @@
         preview: 'whole-property/whole-1.jpg',
         tag: 'Group & Family Stays',
         title: 'Whole Property Booking',
-        size: 'Exclusive use · Up to 12 persons',
+        size: 'Exclusive use · Up to 20 persons',
         price: 'Corporate & Leisure Groups',
         tags: ['Full Privacy','Workspace','First Aid','Caretaker','Free Parking','Group Friendly'],
         desc: [
@@ -1136,13 +1207,18 @@
       overlay.scrollTop = 0;
       overlay.classList.add('open');
       overlay.setAttribute('aria-hidden','false');
-      document.body.style.overflow = 'hidden';
+      lockScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+      document.body.classList.add('rd-lock');
+      document.body.style.top = `-${lockScrollY}px`;
     }
     function closeRoom(){
       overlay.classList.remove('open');
       overlay.setAttribute('aria-hidden','true');
-      document.body.style.overflow = '';
+      document.body.classList.remove('rd-lock');
+      document.body.style.top = '';
+      window.scrollTo(0, lockScrollY);
     }
+    let lockScrollY = 0;
 
     document.querySelectorAll('.fh-card[data-room]').forEach(card=>{
       card.addEventListener('click', ()=>openRoom(card.dataset.room));
@@ -1151,6 +1227,23 @@
     document.addEventListener('keydown', (e)=>{
       if(!overlay.classList.contains('open')) return;
       if(e.key==='Escape') closeRoom();
+    });
+  })();
+
+  // BOOK NOW — floating action button
+  (function(){
+    const fab = document.getElementById('bookFab');
+    const toggle = document.getElementById('fabToggle');
+    if(!fab || !toggle) return;
+    toggle.addEventListener('click', ()=>{
+      const open = fab.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', (e)=>{
+      if(fab.classList.contains('open') && !fab.contains(e.target)) fab.classList.remove('open');
+    });
+    fab.querySelectorAll('.fab-item').forEach(item=>{
+      item.addEventListener('click', ()=> fab.classList.remove('open'));
     });
   })();
 
