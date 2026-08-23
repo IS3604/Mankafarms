@@ -255,20 +255,36 @@
     #contact { background:var(--clr-bg); text-align:center; padding:56px 20px; }
     .contact-big { font-family:var(--font-heading); font-size:clamp(2rem,13vw,7rem); font-weight:900; letter-spacing:-1px; line-height:1.02; color:var(--clr-dark); margin-bottom:24px; }
     .contact-big .ac { color:var(--clr-accent); }
-    .contact-links { display:flex; flex-direction:column; gap:10px; margin-top:24px; }
+    .contact-layout { display:flex; flex-direction:column; gap:20px; max-width:700px; margin:0 auto; text-align:left; }
+    .contact-links { display:flex; flex-direction:column; gap:10px; }
     .clink { display:inline-flex; align-items:center; justify-content:center; gap:8px; background:var(--clr-white); border:1px solid var(--clr-border); border-radius:var(--radius-pill); padding:14px 20px; font-size:14px; font-weight:500; color:var(--clr-dark); transition:background var(--transition),border-color var(--transition),transform var(--transition); box-shadow:var(--shadow-card); }
+    .clink:hover { transform:translateY(-2px); }
     .clink.primary { background:var(--clr-accent); color:var(--clr-white); border-color:var(--clr-accent); }
     .clink.gold { background:var(--clr-gold); color:white; border-color:var(--clr-gold); }
-    .enquiry-card { background:var(--clr-white); border:1px solid var(--clr-border); border-radius:var(--radius-card); padding:28px 22px; max-width:700px; margin:0 auto; box-shadow:var(--shadow-card); text-align:left; }
-    .enquiry-card h3 { font-family:var(--font-heading); font-size:1.35rem; font-weight:800; letter-spacing:-0.5px; color:var(--clr-dark); margin-bottom:8px; }
-    .enquiry-card > p { font-size:13px; color:var(--clr-grey); margin-bottom:22px; }
+    .enquiry-card { position:relative; overflow:hidden; background:var(--clr-white); border:1px solid var(--clr-border); border-radius:var(--radius-card); padding:26px 20px; box-shadow:var(--shadow-card); }
+    .enquiry-head { display:flex; align-items:center; gap:12px; margin-bottom:20px; }
+    .enquiry-badge { width:42px; height:42px; border-radius:12px; background:linear-gradient(135deg,var(--clr-accent),#3f5c2a); display:flex; align-items:center; justify-content:center; color:#fff; flex-shrink:0; }
+    .enquiry-badge .ico { width:20px; height:20px; }
+    .enquiry-card h3 { font-family:var(--font-heading); font-size:1.3rem; font-weight:800; letter-spacing:-0.5px; color:var(--clr-dark); line-height:1.2; }
+    .enquiry-card h3 + p { font-size:12.5px; color:var(--clr-grey); margin-top:2px; }
     .form-row { display:grid; grid-template-columns:1fr; gap:0; }
     .fg { display:flex; flex-direction:column; gap:6px; margin-bottom:14px; }
     .fg label { font-size:10.5px; font-weight:600; letter-spacing:0.06em; text-transform:uppercase; color:var(--clr-light-grey); }
-    .fg input, .fg select, .fg textarea { background:var(--clr-bg); border:1px solid var(--clr-border); border-radius:12px; padding:13px 14px; font-family:var(--font-body); font-size:16px; color:var(--clr-dark); outline:none; transition:border-color var(--transition); width:100%; }
-    .fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--clr-accent); }
+    .finput { position:relative; }
+    .finput .fg-ico { position:absolute; left:14px; top:50%; transform:translateY(-50%); width:17px; height:17px; color:var(--clr-light-grey); pointer-events:none; transition:color var(--transition); }
+    .finput.ta .fg-ico { top:17px; transform:none; }
+    .fg input, .fg select, .fg textarea { background:var(--clr-bg); border:1.5px solid var(--clr-border); border-radius:12px; padding:13px 14px 13px 40px; font-family:var(--font-body); font-size:16px; color:var(--clr-dark); outline:none; transition:border-color var(--transition),box-shadow var(--transition); width:100%; }
+    .fg input:focus,.fg select:focus,.fg textarea:focus { border-color:var(--clr-accent); box-shadow:0 0 0 4px rgba(92,122,63,0.12); }
+    .finput input:focus ~ .fg-ico,.finput select:focus ~ .fg-ico,.finput textarea:focus ~ .fg-ico { color:var(--clr-accent); }
     .fg textarea { resize:vertical; min-height:90px; }
-    .form-submit { width:100%; padding:16px; background:var(--clr-accent); color:var(--clr-white); font-family:var(--font-heading); font-size:15px; font-weight:700; letter-spacing:-0.3px; border:none; border-radius:var(--radius-pill); cursor:pointer; transition:background var(--transition),transform var(--transition); margin-top:6px; }
+    .fg select { appearance:none; -webkit-appearance:none; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%238a8477' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat:no-repeat; background-position:right 14px center; background-size:16px; padding-right:38px; }
+    .contact-facts { display:flex; flex-direction:column; gap:14px; background:var(--clr-white); border:1px solid var(--clr-border); border-radius:var(--radius-card); padding:22px 20px; box-shadow:var(--shadow-card); }
+    .contact-facts h4 { font-family:var(--font-heading); font-size:1rem; font-weight:800; color:var(--clr-dark); letter-spacing:-0.3px; margin-bottom:2px; }
+    .cfact { display:flex; align-items:flex-start; gap:10px; font-size:12.5px; color:var(--clr-grey); line-height:1.5; }
+    .cfact .ico { width:16px; height:16px; color:var(--clr-accent); flex-shrink:0; margin-top:1px; }
+    .form-submit { display:flex; align-items:center; justify-content:center; gap:8px; width:100%; padding:16px; background:var(--clr-accent); color:var(--clr-white); font-family:var(--font-heading); font-size:15px; font-weight:700; letter-spacing:-0.3px; border:none; border-radius:var(--radius-pill); cursor:pointer; box-shadow:0 10px 26px rgba(92,122,63,0.35); transition:background var(--transition),transform var(--transition); margin-top:6px; }
+    .form-submit:hover { background:#476530; transform:translateY(-2px); }
+    .form-submit .ico { width:16px; height:16px; }
 
     /* FOOTER */
     footer { position:relative; overflow:hidden; background:var(--clr-dark); color:rgba(255,255,255,0.55); padding:44px 24px calc(36px + env(safe-area-inset-bottom)); font-size:12px; }
@@ -379,8 +395,16 @@
       .nav-links { display:flex; align-items:center; gap:4px; }
       .nav-link { color:var(--clr-white); font-family:var(--font-body); font-size:14px; font-weight:400; padding:8px 14px; border-radius:var(--radius-pill); transition:color var(--transition); letter-spacing:-0.3px; }
       .nav-link:hover { color:#9cbf6a; }
-      .nav-cta { background:var(--clr-accent); color:var(--clr-white); font-size:14px; font-weight:500; padding:10px 18px; border-radius:var(--radius-pill); transition:background var(--transition),transform var(--transition); flex-shrink:0; }
+      .nav-cta { background:var(--clr-accent); color:var(--clr-white); font-size:14px; font-weight:500; padding:10px 18px; border-radius:var(--radius-pill); transition:background var(--transition),transform var(--transition); flex-shrink:0; border:none; cursor:pointer; font-family:var(--font-body); display:flex; align-items:center; gap:6px; }
       .nav-cta:hover { background:#476530; transform:scale(1.04); }
+      .nav-book-wrap { position:relative; flex-shrink:0; }
+      .nav-book-menu { position:absolute; bottom:calc(100% + 16px); right:0; width:250px; background:var(--clr-white); border:1px solid var(--clr-border); border-radius:16px; padding:10px; box-shadow:0 20px 50px rgba(0,0,0,0.25); transform:translateY(10px) scale(0.96); opacity:0; pointer-events:none; transition:transform var(--transition),opacity var(--transition); }
+      .nav-book-wrap.open .nav-book-menu { transform:translateY(0) scale(1); opacity:1; pointer-events:auto; }
+      .nav-book-wrap.open .nav-cta .ico.cal { display:none; }
+      .nav-book-wrap.open .nav-cta .ico.x { display:block; }
+      .nav-cta .ico.x { display:none; width:14px; height:14px; }
+      .nav-cta .ico.cal { width:14px; height:14px; }
+      .book-fab { display:none; }
       .mobile-nav { display:none; }
       footer { padding:56px 5%; }
       .footer-inner { flex-direction:row; align-items:center; justify-content:space-between; text-align:left; gap:20px; }
@@ -446,16 +470,15 @@
       #guide { margin:32px 24px; padding:80px 7%; }
       .guide-grid { grid-template-columns:1fr 1fr; gap:60px; }
       #contact { padding:80px 5% 160px; }
-      .contact-links { flex-direction:row; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:32px; }
-      .enquiry-card { padding:48px; }
+      .contact-layout { max-width:1000px; flex-direction:row; align-items:flex-start; gap:28px; }
+      .contact-layout .enquiry-card { flex:1.4; }
+      .contact-layout .contact-side { flex:1; display:flex; flex-direction:column; gap:20px; }
+      .contact-links { flex-direction:column; gap:10px; margin-top:0; }
+      .enquiry-card { padding:40px; }
       .form-row { grid-template-columns:1fr 1fr; gap:16px; }
 
       .exp-card { grid-template-columns:1fr auto; gap:24px; padding:32px 36px; }
       .exp-period,.exp-loc { text-align:right; white-space:nowrap; }
-
-      .book-fab { bottom:110px; right:5%; align-items:flex-end; }
-      .fab-main { padding:16px 26px; font-size:15px; }
-      .fab-menu { width:250px; }
     }
 
     /* ============ DESKTOP ============ */
@@ -491,7 +514,22 @@
       <a href="#location"    class="nav-link">Location</a>
       <a href="#guide"       class="nav-link">Guide</a>
     </div>
-    <a href="#contact" class="nav-cta">Enquire Now</a>
+    <div class="nav-book-wrap" id="navBookWrap">
+      <button class="nav-cta" id="navBookToggle" aria-haspopup="true" aria-expanded="false">
+        <svg class="ico cal" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/></svg>
+        <svg class="ico x" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>
+        Book Now
+      </button>
+      <div class="nav-book-menu" id="navBookMenu">
+        <p class="fab-label">Book Directly</p>
+        <div class="fab-row">
+          <a href="tel:+919993788800" class="fab-item"><svg class="ico" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.22a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92Z"/></svg>Call</a>
+          <a href="https://wa.me/919993788800" target="_blank" rel="noopener" class="fab-item"><svg class="ico ico-fill" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.005c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Zm5.8 14.14c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.08.99-2.37.26-.28.57-.36.76-.36l.55.01c.18 0 .41-.07.64.49.24.58.81 2 .88 2.14.07.15.12.32.02.51-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.29.28-.12.55.16.28.73 1.2 1.57 1.94 1.08.96 1.99 1.26 2.27 1.4.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.55.73 1.81.87.27.13.44.2.51.3.07.11.07.65-.17 1.32Z"/></svg>WhatsApp</a>
+        </div>
+        <a href="https://www.airbnb.co.in/rooms/1143813205078140998?check_in=2026-09-01&check_out=2026-09-02&guests=1&adults=1&s=67&unique_share_id=efa01328-fd86-496e-8c9c-e101ecde5888" target="_blank" rel="noopener" class="fab-item gold"><svg class="ico" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>Book on Airbnb</a>
+        <a href="#contact" class="fab-item">Direct Enquiry</a>
+      </div>
+    </div>
   </div>
 </nav>
 
@@ -860,31 +898,53 @@
   <h2 class="contact-big reveal">
     Book Your<br>Jungle <span class="ac">Escape</span>
   </h2>
-  <div class="enquiry-card reveal" style="transition-delay:0.1s">
-    <h3>Book Your Stay</h3>
-    <p>Fill in your details and we'll get back to you promptly to confirm your jungle farmstay booking.</p>
-    <div class="form-row">
-      <div class="fg"><label>Full Name *</label><input type="text" id="fldName" placeholder="Your full name" required></div>
-      <div class="fg"><label>Phone Number *</label><input type="tel" id="fldPhone" placeholder="+91 XXXXX XXXXX" required></div>
+  <div class="contact-layout">
+    <div class="enquiry-card reveal" style="transition-delay:0.1s">
+      <div class="enquiry-head">
+        <div class="enquiry-badge"><svg class="ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M16 3v4M8 3v4M3 10h18"/><path d="M8 15h4"/></svg></div>
+        <div><h3>Book Your Stay</h3><p>We'll get back to you promptly to confirm your booking.</p></div>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label>Full Name *</label>
+          <div class="finput"><svg class="ico fg-ico" viewBox="0 0 24 24"><path d="M20 21a8 8 0 0 0-16 0"/><circle cx="12" cy="7" r="4"/></svg><input type="text" id="fldName" placeholder="Your full name" required></div>
+        </div>
+        <div class="fg"><label>Phone Number *</label>
+          <div class="finput"><svg class="ico fg-ico" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.22a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92Z"/></svg><input type="tel" id="fldPhone" placeholder="+91 XXXXX XXXXX" required></div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="fg"><label>Email Address (Optional)</label>
+          <div class="finput"><svg class="ico fg-ico" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><input type="email" id="fldEmail" placeholder="your@email.com"></div>
+        </div>
+        <div class="fg"><label>Number of Guests *</label>
+          <div class="finput"><svg class="ico fg-ico" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+            <select id="fldGuests" required>
+              <option value="">Select guests</option>
+              <option>1–4 Guests</option>
+              <option>5–8 Guests</option>
+              <option>9–12 Guests</option>
+              <option>13–20 Guests (Full Property)</option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="fg"><label>Message / Dates (Optional)</label>
+        <div class="finput ta"><svg class="ico fg-ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg><textarea placeholder="Preferred dates, any specific requirements..."></textarea></div>
+      </div>
+      <button class="form-submit" onclick="handleSubmit()">Submit Booking Enquiry <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
     </div>
-    <div class="form-row">
-      <div class="fg"><label>Email Address (Optional)</label><input type="email" id="fldEmail" placeholder="your@email.com"></div>
-      <div class="fg"><label>Number of Guests *</label>
-        <select id="fldGuests" required>
-          <option value="">Select guests</option>
-          <option>1–4 Guests</option>
-          <option>5–8 Guests</option>
-          <option>9–12 Guests</option>
-          <option>13–20 Guests (Full Property)</option>
-        </select>
+    <div class="contact-side">
+      <div class="contact-facts reveal" style="transition-delay:0.15s">
+        <h4>Good to know</h4>
+        <div class="cfact"><svg class="ico" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.22a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92Z"/></svg><span>Happy to help over a call or WhatsApp, or via Airbnb — whatever's easiest for you.</span></div>
+        <div class="cfact"><svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="7" r="4"/><path d="M4 21v-2a6 6 0 0 1 6-6h4a6 6 0 0 1 6 6v2"/></svg><span>A caretaker is on-site throughout your stay.</span></div>
+        <div class="cfact"><svg class="ico" viewBox="0 0 24 24"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg><span>7 km from Turia Gate, Pench Tiger Reserve.</span></div>
+      </div>
+      <div class="contact-links reveal" style="transition-delay:0.2s">
+        <a href="https://wa.me/919993788800" class="clink primary"><svg class="ico ico-fill" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.005c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Zm5.8 14.14c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.08.99-2.37.26-.28.57-.36.76-.36l.55.01c.18 0 .41-.07.64.49.24.58.81 2 .88 2.14.07.15.12.32.02.51-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.29.28-.12.55.16.28.73 1.2 1.57 1.94 1.08.96 1.99 1.26 2.27 1.4.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.55.73 1.81.87.27.13.44.2.51.3.07.11.07.65-.17 1.32Z"/></svg> WhatsApp Us</a>
+        <a href="https://www.airbnb.co.in/rooms/1143813205078140998?check_in=2026-09-01&check_out=2026-09-02&guests=1&adults=1&s=67&unique_share_id=efa01328-fd86-496e-8c9c-e101ecde5888" target="_blank" rel="noopener" class="clink gold"><svg class="ico" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg> Book on Airbnb</a>
       </div>
     </div>
-    <div class="fg"><label>Message / Dates (Optional)</label><textarea placeholder="Preferred dates, any specific requirements..."></textarea></div>
-    <button class="form-submit" onclick="handleSubmit()">Submit Booking Enquiry →</button>
-  </div>
-  <div class="contact-links reveal" style="transition-delay:0.15s">
-    <a href="https://wa.me/919993788800" class="clink primary"><svg class="ico ico-fill" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.005c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Zm5.8 14.14c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.08.99-2.37.26-.28.57-.36.76-.36l.55.01c.18 0 .41-.07.64.49.24.58.81 2 .88 2.14.07.15.12.32.02.51-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.29.28-.12.55.16.28.73 1.2 1.57 1.94 1.08.96 1.99 1.26 2.27 1.4.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.55.73 1.81.87.27.13.44.2.51.3.07.11.07.65-.17 1.32Z"/></svg> WhatsApp Us</a>
-    <a href="https://www.airbnb.co.in/rooms/1143813205078140998?check_in=2026-09-01&check_out=2026-09-02&guests=1&adults=1&s=67&unique_share_id=efa01328-fd86-496e-8c9c-e101ecde5888" target="_blank" rel="noopener" class="clink gold"><svg class="ico" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg> Book on Airbnb</a>
   </div>
 </section>
 
@@ -1244,6 +1304,24 @@
     });
     fab.querySelectorAll('.fab-item').forEach(item=>{
       item.addEventListener('click', ()=> fab.classList.remove('open'));
+    });
+  })();
+
+  // BOOK NOW — desktop navbar dropdown
+  (function(){
+    const wrap = document.getElementById('navBookWrap');
+    const toggle = document.getElementById('navBookToggle');
+    if(!wrap || !toggle) return;
+    toggle.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      const open = wrap.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    document.addEventListener('click', (e)=>{
+      if(wrap.classList.contains('open') && !wrap.contains(e.target)) wrap.classList.remove('open');
+    });
+    wrap.querySelectorAll('.fab-item').forEach(item=>{
+      item.addEventListener('click', ()=> wrap.classList.remove('open'));
     });
   })();
 
