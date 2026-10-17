@@ -1418,7 +1418,15 @@
       const params = { from_name:d.name, phone:d.phone, email:d.email || 'not provided', guests:d.guests, message:d.message };
       await emailjs.send(EMAILJS.serviceId, EMAILJS.ownerTemplateId, params);
       if(d.email && EMAILJS.guestTemplateId){
-        try{ await emailjs.send(EMAILJS.serviceId, EMAILJS.guestTemplateId, { ...params, to_email:d.email }); }catch(e){}
+        // EmailJS limits requests to ~1/sec, so wait before the 2nd send and retry once
+        const gp = { ...params, to_email:d.email, email:d.email, reply_to:d.email };
+        await new Promise(r=>setTimeout(r,1300));
+        try{ await emailjs.send(EMAILJS.serviceId, EMAILJS.guestTemplateId, gp); }
+        catch(e1){
+          console.warn('Guest email failed, retrying:', e1);
+          await new Promise(r=>setTimeout(r,1500));
+          try{ await emailjs.send(EMAILJS.serviceId, EMAILJS.guestTemplateId, gp); }catch(e2){ console.error('Guest email failed:', e2); }
+        }
       }
       document.getElementById('formStatus').style.display = 'none';
       [name,phone,email,msg].forEach(f=>f.value=''); guests.value='';
