@@ -537,7 +537,6 @@
           <a href="tel:+919993788800" class="fab-item"><svg class="ico" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.22a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92Z"/></svg>Call</a>
           <a href="https://wa.me/919993788800" target="_blank" rel="noopener noreferrer" class="fab-item"><svg class="ico ico-fill" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.005c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Zm5.8 14.14c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.08.99-2.37.26-.28.57-.36.76-.36l.55.01c.18 0 .41-.07.64.49.24.58.81 2 .88 2.14.07.15.12.32.02.51-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.29.28-.12.55.16.28.73 1.2 1.57 1.94 1.08.96 1.99 1.26 2.27 1.4.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.55.73 1.81.87.27.13.44.2.51.3.07.11.07.65-.17 1.32Z"/></svg>WhatsApp</a>
         </div>
-        <a href="https://www.airbnb.com/rooms/1143813205078140998" target="_blank" rel="noopener noreferrer" class="fab-item gold"><svg class="ico" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>Book on Airbnb</a>
         <a href="#contact" class="fab-item">Direct Enquiry</a>
       </div>
     </div>
@@ -944,9 +943,10 @@
         </div>
       </div>
       <div class="fg"><label>Message / Dates (Optional)</label>
-        <div class="finput ta"><svg class="ico fg-ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg><textarea placeholder="Preferred dates, any specific requirements..."></textarea></div>
+        <div class="finput ta"><svg class="ico fg-ico" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg><textarea id="fldMessage" placeholder="Preferred dates, any specific requirements..."></textarea></div>
       </div>
-      <button class="form-submit" onclick="handleSubmit()">Submit Booking Enquiry <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
+      <p id="formStatus" role="status" aria-live="polite" style="display:none;margin:0 0 12px;padding:12px 14px;border-radius:12px;font-size:14px;line-height:1.5"></p>
+      <button class="form-submit" id="formSubmitBtn" onclick="handleSubmit()">Submit Booking Enquiry <svg class="ico" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="m13 6 6 6-6 6"/></svg></button>
     </div>
     <div class="contact-side">
       <div class="contact-facts reveal" style="transition-delay:0.15s">
@@ -1016,7 +1016,6 @@
       <a href="tel:+919993788800" class="fab-item"><svg class="ico" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.12.9.34 1.79.65 2.65a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.43-1.22a2 2 0 0 1 2.11-.45c.86.31 1.75.53 2.65.65A2 2 0 0 1 22 16.92Z"/></svg>Call</a>
       <a href="https://wa.me/919993788800" target="_blank" rel="noopener noreferrer" class="fab-item"><svg class="ico ico-fill" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.005c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.87 9.87 0 0 0 12.04 2Zm5.8 14.14c-.24.68-1.4 1.32-1.93 1.4-.5.08-1.11.11-1.79-.11-.41-.13-.94-.3-1.62-.6-2.85-1.23-4.71-4.1-4.85-4.29-.14-.19-1.16-1.54-1.16-2.94 0-1.4.73-2.08.99-2.37.26-.28.57-.36.76-.36l.55.01c.18 0 .41-.07.64.49.24.58.81 2 .88 2.14.07.15.12.32.02.51-.09.19-.14.31-.28.47-.14.16-.29.36-.42.48-.14.13-.29.28-.12.55.16.28.73 1.2 1.57 1.94 1.08.96 1.99 1.26 2.27 1.4.28.14.44.12.6-.07.16-.19.68-.79.86-1.06.18-.27.36-.22.6-.13.24.09 1.55.73 1.81.87.27.13.44.2.51.3.07.11.07.65-.17 1.32Z"/></svg>WhatsApp</a>
     </div>
-    <a href="https://www.airbnb.com/rooms/1143813205078140998" target="_blank" rel="noopener noreferrer" class="fab-item gold"><svg class="ico" viewBox="0 0 24 24"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/><path d="M9 20v-6h6v6"/></svg>Book on Airbnb</a>
     <a href="#contact" class="fab-item" id="fabEnquire"><svg class="ico" viewBox="0 0 24 24"><path d="M4 4h16v16H4z"/><path d="M4 8h16"/><path d="M8 4v4"/></svg>Direct Enquiry</a>
   </div>
   <button class="fab-main" id="fabToggle" aria-label="Book Now" aria-expanded="false">
@@ -1340,14 +1339,59 @@
     });
   })();
 
-  function handleSubmit(){
+  // ---- Enquiry form ----
+  // Fill these 4 values after EmailJS setup. While blank, the form opens WhatsApp with the enquiry pre-filled (works instantly).
+  const EMAILJS = { publicKey:'6E7oQEHIsIV_e2BtL', serviceId:'service_7armtjd', ownerTemplateId:'template_d5kmqka', guestTemplateId:'template_5d10wfr' };
+  const OWNER_WA = '919993788800';
+
+  function setStatus(msg, ok){
+    const el = document.getElementById('formStatus');
+    el.style.display = 'block'; el.textContent = msg;
+    el.style.background = ok ? 'rgba(92,122,63,.14)' : 'rgba(180,60,40,.12)';
+    el.style.color = ok ? '#35501f' : '#8a2d1c';
+  }
+  function loadEmailJS(){
+    return new Promise((res, rej) => {
+      if (window.emailjs) return res();
+      const sc = document.createElement('script');
+      sc.src = 'https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js';
+      sc.onload = res; sc.onerror = rej; document.head.appendChild(sc);
+    });
+  }
+  async function handleSubmit(){
     const name = document.getElementById('fldName');
     const phone = document.getElementById('fldPhone');
+    const email = document.getElementById('fldEmail');
     const guests = document.getElementById('fldGuests');
+    const msg = document.getElementById('fldMessage');
     if(!name.value.trim()){ name.reportValidity(); name.focus(); return; }
     if(!phone.value.trim()){ phone.reportValidity(); phone.focus(); return; }
+    if(email.value.trim() && !email.checkValidity()){ email.reportValidity(); email.focus(); return; }
     if(!guests.value){ guests.reportValidity(); guests.focus(); return; }
-    alert('Thank you for your enquiry!\n\nOur team will contact you within 24 hours to schedule your complimentary site visit.');
+    const d = { name:name.value.trim(), phone:phone.value.trim(), email:email.value.trim(), guests:guests.value, message:msg.value.trim() || '—' };
+    const btn = document.getElementById('formSubmitBtn');
+    const configured = EMAILJS.publicKey && EMAILJS.serviceId && EMAILJS.ownerTemplateId;
+
+    if(!configured){
+      const text = 'Hi Manka Farms, I would like to enquire.\n\nName: '+d.name+'\nPhone: '+d.phone+(d.email?'\nEmail: '+d.email:'')+'\nGuests: '+d.guests+'\nMessage: '+d.message;
+      window.open('https://wa.me/'+OWNER_WA+'?text='+encodeURIComponent(text), '_blank', 'noopener');
+      setStatus('Opening WhatsApp — please tap Send to deliver your enquiry. We will reply shortly.', true);
+      return;
+    }
+    btn.disabled = true; btn.style.opacity = '.7';
+    try{
+      await loadEmailJS();
+      emailjs.init({ publicKey: EMAILJS.publicKey });
+      const params = { from_name:d.name, phone:d.phone, email:d.email || 'not provided', guests:d.guests, message:d.message };
+      await emailjs.send(EMAILJS.serviceId, EMAILJS.ownerTemplateId, params);
+      if(d.email && EMAILJS.guestTemplateId){
+        try{ await emailjs.send(EMAILJS.serviceId, EMAILJS.guestTemplateId, { ...params, to_email:d.email }); }catch(e){}
+      }
+      setStatus('Thank you, '+d.name.split(' ')[0]+'! Your enquiry has been sent. We will contact you shortly.', true);
+      [name,phone,email,msg].forEach(f=>f.value=''); guests.value='';
+    }catch(err){
+      setStatus('Sorry, something went wrong. Please call or WhatsApp us on +91 99937 88800.', false);
+    }finally{ btn.disabled = false; btn.style.opacity = ''; }
   }
 </script>
 </body>
