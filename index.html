@@ -500,6 +500,24 @@
     .mpt-t2{font-size:17px;font-weight:800;letter-spacing:-.3px;line-height:1.2;margin:3px 0 4px;color:#fff}
     .mpt-t3{font-size:12px;opacity:.65;line-height:1.4;color:#f4ecd8}
     @media(min-width:768px){.mpt-card{max-width:460px}.mpt-logo{width:96px;height:96px}}
+
+    .ok-ov{position:fixed;inset:0;z-index:10100;background:rgba(20,16,10,.72);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+    .ok-ov.show{opacity:1;visibility:visible}
+    .ok-card{background:#fffdf7;border-radius:22px;padding:34px 26px 26px;max-width:380px;width:100%;text-align:center;transform:scale(.88);transition:transform .35s cubic-bezier(.2,.9,.3,1.3);box-shadow:0 20px 60px rgba(0,0,0,.35)}
+    .ok-ov.show .ok-card{transform:scale(1)}
+    .ok-circle{width:84px;height:84px;margin:0 auto 18px;display:block}
+    .ok-circle .c{fill:none;stroke:#5c7a3f;stroke-width:3;stroke-dasharray:166;stroke-dashoffset:166}
+    .ok-circle .t{fill:none;stroke:#5c7a3f;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:48;stroke-dashoffset:48}
+    .ok-ov.show .ok-circle .c{animation:okdraw .6s .15s ease forwards}
+    .ok-ov.show .ok-circle .t{animation:okdraw .4s .7s ease forwards}
+    @keyframes okdraw{to{stroke-dashoffset:0}}
+    .ok-card h3{font-size:22px;color:#241b13;margin-bottom:8px}
+    .ok-card p{font-size:14px;line-height:1.6;color:#5b5243;margin-bottom:20px}
+    .ok-btn{display:inline-block;border:0;cursor:pointer;background:#5c7a3f;color:#fff;font:700 14px inherit;padding:12px 26px;border-radius:100px}
+    .ok-bar{height:3px;background:#e9e1cc;border-radius:3px;margin-top:18px;overflow:hidden}
+    .ok-bar i{display:block;height:100%;width:100%;background:#5c7a3f;transform-origin:left;transform:scaleX(1)}
+    .ok-ov.show .ok-bar i{animation:okbar 4.5s linear forwards}
+    @keyframes okbar{to{transform:scaleX(0)}}
   </style>
 <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": ["LodgingBusiness", "Resort"], "@id": "https://mankafarms.in/#farmstay", "name": "Manka Farms", "alternateName": "Manka Farms Pench", "description": "Registered farmstay (MP Tourism) and private jungle farmhouse near Pench Tiger Reserve, Madhya Pradesh. 4 bedrooms, 5 bathrooms, sleeps up to 20, on-site EV charging, bonfire evenings, pot-making experience.", "url": "https://mankafarms.in/", "image": "https://mankafarms.in/manka-img1.jpg", "logo": "https://mankafarms.in/manka-logo-small.png", "telephone": "+919993788800", "address": {"@type": "PostalAddress", "streetAddress": "Amajhiri, Kurai", "postalCode": "480881", "addressRegion": "Madhya Pradesh", "addressCountry": "IN"}, "numberOfRooms": 4, "amenityFeature": [{"@type": "LocationFeatureSpecification", "name": "EV charging (11 kW)", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Free parking", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Wi-Fi", "value": true}, {"@type": "LocationFeatureSpecification", "name": "Bonfire", "value": true}], "sameAs": ["https://www.instagram.com/manka_pench", "https://www.airbnb.com/rooms/1143813205078140998"], "areaServed": "Pench Tiger Reserve, Madhya Pradesh"}, {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Where is Manka Farms?", "acceptedAnswer": {"@type": "Answer", "text": "Manka Farms is a private jungle farmstay at Amajhiri, Kurai 480881, Madhya Pradesh, about 7 km from Turia Gate of Pench Tiger Reserve and about 1 km from the Pench buffer zone."}}, {"@type": "Question", "name": "Is Manka Farms a registered farmstay?", "acceptedAnswer": {"@type": "Answer", "text": "Yes. Manka Farms is a Registered Farmstay by MP Tourism (Madhya Pradesh Tourism)."}}, {"@type": "Question", "name": "How many guests can Manka Farms host?", "acceptedAnswer": {"@type": "Answer", "text": "The whole property sleeps up to 20 guests, with 4 bedrooms and 5 bathrooms."}}, {"@type": "Question", "name": "Is EV charging available?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, there is on-site EV charging (11 kW)."}}, {"@type": "Question", "name": "How do I book Manka Farms?", "acceptedAnswer": {"@type": "Answer", "text": "Book on Airbnb (https://www.airbnb.com/rooms/1143813205078140998), call +91 99937 88800 / +91 92385 04620, or WhatsApp +91 99937 88800."}}]}]}</script>
 </head>
@@ -1358,6 +1376,21 @@
       sc.onload = res; sc.onerror = rej; document.head.appendChild(sc);
     });
   }
+  let okTimer;
+  function goHome(){
+    const ov = document.getElementById('okOv');
+    ov.classList.remove('show'); clearTimeout(okTimer);
+    document.body.style.overflow = '';
+    const h = document.querySelector('#mobileNav [data-page="page-home"]');
+    if (window.matchMedia('(max-width:767px)').matches && h) h.click();
+    else window.scrollTo({top:0, behavior:'smooth'});
+  }
+  function showSuccess(first){
+    document.getElementById('okMsg').textContent = 'Thank you, '+first+'! We will contact you shortly.';
+    document.getElementById('okOv').classList.add('show');
+    document.body.style.overflow = 'hidden';
+    clearTimeout(okTimer); okTimer = setTimeout(goHome, 4500);
+  }
   async function handleSubmit(){
     const name = document.getElementById('fldName');
     const phone = document.getElementById('fldPhone');
@@ -1387,12 +1420,22 @@
       if(d.email && EMAILJS.guestTemplateId){
         try{ await emailjs.send(EMAILJS.serviceId, EMAILJS.guestTemplateId, { ...params, to_email:d.email }); }catch(e){}
       }
-      setStatus('Thank you, '+d.name.split(' ')[0]+'! Your enquiry has been sent. We will contact you shortly.', true);
+      document.getElementById('formStatus').style.display = 'none';
       [name,phone,email,msg].forEach(f=>f.value=''); guests.value='';
+      showSuccess(d.name.split(' ')[0]);
     }catch(err){
       setStatus('Sorry, something went wrong. Please call or WhatsApp us on +91 99937 88800.', false);
     }finally{ btn.disabled = false; btn.style.opacity = ''; }
   }
 </script>
+<div class="ok-ov" id="okOv" role="dialog" aria-modal="true" aria-labelledby="okTitle">
+  <div class="ok-card">
+    <svg class="ok-circle" viewBox="0 0 56 56" aria-hidden="true"><circle class="c" cx="28" cy="28" r="26.5"/><path class="t" d="M16 29l8 8 16-17"/></svg>
+    <h3 id="okTitle">Enquiry Sent!</h3>
+    <p id="okMsg">Thank you! We will contact you shortly.</p>
+    <button class="ok-btn" type="button" id="okBtn" onclick="goHome()">Back to Home</button>
+    <div class="ok-bar"><i></i></div>
+  </div>
+</div>
 </body>
 </html>
